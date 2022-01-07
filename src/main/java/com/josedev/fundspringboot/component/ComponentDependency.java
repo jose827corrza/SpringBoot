@@ -1,4 +1,4 @@
-package com.josedev.fundspringboot;
+package com.josedev.fundspringboot.component;
 
 public interface ComponentDependency {
 

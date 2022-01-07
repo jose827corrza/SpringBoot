@@ -1,5 +1,9 @@
 package com.josedev.fundspringboot;
 
+import com.josedev.fundspringboot.bean.MyBeanWithProperties;
+import com.josedev.fundspringboot.bean.myBean;
+import com.josedev.fundspringboot.bean.myBeanWithDependency;
+import com.josedev.fundspringboot.component.ComponentDependency;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -13,10 +17,20 @@ public class FundSpringBootApplication implements CommandLineRunner {
      * using @Qualifier, we specify the dependency that we want to use
      */
     private ComponentDependency componentDependency;
+    private myBean myBeanDependency;
+    private myBeanWithDependency myBDependency;
+    private MyBeanWithProperties myBeanWithProperties;
 
     //Dependency injection
-    public FundSpringBootApplication(@Qualifier("componentImpV2") ComponentDependency componentDependency) {
+    public FundSpringBootApplication(@Qualifier("componentImpV2") ComponentDependency componentDependency,
+                                     myBean myBeanDependency,
+                                     myBeanWithDependency myBDependency,
+                                     MyBeanWithProperties myBeanWithProperties) {
         this.componentDependency = componentDependency;
+        this.myBeanDependency = myBeanDependency;
+        this.myBDependency = myBDependency;
+        this.myBeanWithProperties = myBeanWithProperties;
+        //Inyeccion de dependencia
     }
 
     public static void main(String[] args) {
@@ -33,6 +47,10 @@ public class FundSpringBootApplication implements CommandLineRunner {
      */
     @Override
     public void run(String... args) throws Exception {
+        //Llamar su implementacion
         componentDependency.saludar();
+        myBeanDependency.print();
+        myBDependency.withDependency();
+        System.out.println(myBeanWithProperties.function());
     }
 }

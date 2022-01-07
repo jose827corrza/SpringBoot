@@ -1,6 +1,5 @@
 package com.josedev.fundspringboot.component;
 
-import com.josedev.fundspringboot.ComponentDependency;
 import org.springframework.stereotype.Component;
 
 @Component
